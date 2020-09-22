@@ -1,0 +1,120 @@
+<div class="row">
+  <label id="main-title">{{pageTitle}}</label>
+</div>
+<div *ngIf="loader" class="loader"><img src="../../assets/images/loader.svg" alt="loading"></div>
+<div class="col-12 grid-margin">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Video Details</h4>
+      <!-- <form class="form-sample" [formGroup]="userInformationForm" #userDetailsForm="ngForm"> -->
+      <form class="form-sample" #videoDetailsForm="ngForm" >
+        <p class="card-description">
+          Video Information
+        </p>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group row" [class.has-error]="title.invalid && title.touched"
+              [class.has-success]="title.valid">
+              <label class="col-sm-3 col-form-label control-label" for="title">Title</label>
+              <div class="col-sm-9">
+                <input required
+                  pattern="^([A-Za-z]{3,16})([ ]{0,1})([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})$"
+                  type="text" class="form-control" name="title" id="title" [(ngModel)]="video.title" #title="ngModel" />
+                <span class="help-block" *ngIf="title.errors?.required && title.touched">
+                  Video Title is Required.
+                </span>
+                <span class="help-block" *ngIf=" title.errors?.pattern && title.touched">
+                  Video Title is invalid.
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group row" [class.has-error]="length.invalid && length.touched"
+              [class.has-success]="length.valid">
+              <label class="col-sm-3 col-form-label control-label" for="length">Length (Minutes)</label>
+              <div class="col-sm-9">
+                <input required pattern="^([0-9]{1,20})$" type="text" class="form-control" name="length" id="length"
+                  [(ngModel)]="video.length" #length="ngModel" />
+                <span class="help-block" *ngIf="length.errors?.required && length.touched">
+                  Length is Required.
+                </span>
+                <span class="help-block" *ngIf=" length.errors?.pattern && length.touched">
+                  Length is invalid.
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group row" [class.has-error]="category.invalid && category.touched"
+              [class.has-success]="category.valid">
+              <label class="col-sm-3 col-form-label control-label" for="rank">Category</label>
+              <div class="col-sm-9">
+                <select required class="form-control" name="category" [(ngModel)]="video.category" id="category" #category="ngModel">
+                  <option disabled [ngValue]="null">Select Category</option>
+                  <option *ngFor="let cat of  videoCategory" [value]="cat.categoryValue">
+                    {{cat.categoryValue}}
+                  </option>
+                </select>
+                <span class="help-block" *ngIf="category.invalid && category.touched">
+                  Category is required.
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group fileButton">
+              <input type="file" name="clip" id="clip" [(ngModel)]="video.clip" #clip="ngModel"
+                (change)="showPreviewVideo($event)" />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <video width="320" height="240" controls>
+              <source [src]="localUrl" id="videoClip" class="imgPlaceholder" *ngIf="localUrl" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6" id="button-container">
+            <div *ngIf="createButton">
+              <button type="submit" class="btn btn-success mr-2 create-user-btn" (click)="saveVideoDetails(video); videoDetailsForm.reset()" [disabled]="videoDetailsForm.invalid">Create New Video</button>
+            </div>
+            <div *ngIf="editButton">
+              <button type="submit" class="btn btn-success mr-2 create-user-btn" (click)="editVideoDetails(video); videoDetailsForm.reset()" [disabled]="videoDetailsForm.invalid">Save
+               Changes</button>
+            </div>
+            <div *ngIf="deleteButton">
+              <button type="submit" class="btn btn-success mr-2 create-user-btn" (click)="deactivateCustomer(video); videoDetailsForm.reset()" [disabled]="videoDetailsForm.invalid">Deactivate/Activate 
+              Video</button>
+            </div>
+            <div>
+              <a class="btn btn-light mr-2 create-user-btn" (click)="videoDetailsForm.reset()" routerLink="/videos">Back to
+                List</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div>
+          <ng-template #thenBlock>
+            <button type="submit" class="btn btn-success mr-2 create-user-btn"
+              [disabled]="videoDetailsForm.invalid">Save
+              Details</button>&nbsp;&nbsp;
+            <a class="btn btn-light mr-2 create-user-btn" (click)="videoDetailsForm.reset()" routerLink="/videos">Back
+              to
+              List</a>
+          </ng-template>
+          <ng-template #elseBlock><button type="submit" class="btn btn-success mr-2 create-user-btn"
+              [disabled]="videoDetailsForm.invalid">Save
+              Changes</button>&nbsp;&nbsp;
+            <a class="btn btn-light mr-2 create-user-btn" (click)="videoDetailsForm.reset()" routerLink="/videos">Back
+              to
+              List</a>
+          </ng-template>
+        </div> -->
+      </form>
+    </div>
+  </div>
+</div>

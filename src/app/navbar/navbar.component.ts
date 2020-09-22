@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-navbar',
@@ -8,7 +9,13 @@ import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
   providers: [NgbDropdownConfig]
 })
 export class NavbarComponent implements OnInit {
+
+  firstName: string;
   public sidebarOpened = false;
+  token: any;
+  fullName: string;
+  userId: string;
+  userProfile: string;
   toggleOffcanvas() {
     this.sidebarOpened = !this.sidebarOpened;
     if (this.sidebarOpened) {
@@ -18,10 +25,24 @@ export class NavbarComponent implements OnInit {
       document.querySelector('.sidebar-offcanvas').classList.remove('active');
     }
   }
-  constructor(config: NgbDropdownConfig) {
+  constructor(config: NgbDropdownConfig, private router: Router,) {
     config.placement = 'bottom-right';
   }
+  
+
   ngOnInit() {
+    this.firstName = localStorage.getItem('userName').split(' ')[0];
+    this.fullName = localStorage.getItem('userName');
+    this.userId = localStorage.getItem('userId');
+    this.userProfile = "https://res.cloudinary.com/dk8vuddno/image/upload/v1593958819/" +this.userId +".jpg";
+  }
+
+  logout() {
+    this.token = null;
+    localStorage.removeItem('token');
+    localStorage.clear();
+        this.router.navigate(['login']);
+   
   }
 
 }

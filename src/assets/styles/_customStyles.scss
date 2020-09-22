@@ -1,0 +1,149 @@
+.content-wrapper {
+  background-color: #333 !important;
+  border-radius: 25px;
+  overflow-y: auto;
+}
+
+.main-panel {
+  min-height: 100vh !important;
+  color: #fff !important;
+  padding: 20px;
+}
+
+.sidebar {
+  min-height: calc(100vh - 150px) !important;
+}
+
+.page-body-wrapper {
+  padding: 0px !important;
+}
+
+
+.card,
+.card-statistics {
+  border: 0;
+  border-radius: 15px !important;
+  border-radius: 2px;
+  background: linear-gradient(145deg, #2e2e2e, #373737);
+  box-shadow: 4px 4px 8px #222222, -4px -4px 8px #444444;
+}
+
+table.dataTable tbody tr {
+  background-color: transparent !important;
+  color: #fff !important;
+  letter-spacing: 1px !important;
+  font-weight: 100 !important;
+}
+
+.table th,
+.table td {
+  border-top: 0px !important;
+}
+
+table.dataTable thead .sorting {
+  color: #f9c80f;
+  font-weight: 600 !important;
+}
+
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_processing,
+.dataTables_wrapper .dataTables_paginate {
+  color: #ccc;
+  letter-spacing: 1px;
+
+  select {
+    border-radius: 6px !important;
+    box-shadow: 0px 4px 8px #444 !important;
+  }
+}
+
+.dataTables_wrapper .dataTables_filter input {
+  border-radius: 6px !important;
+  box-shadow: 0px 4px 8px #444 !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  border-radius: 5px;
+  background: linear-gradient(145deg, #2e2e2e, #373737);
+  box-shadow: 2px 2px 3px #222222, -2px -2px 3px #444444;
+  color: #ccc !important;
+  margin: 5px;
+}
+
+.img-xs, .table td img, .table th img {
+  width: 100%;
+  height: 100%;
+}
+
+.table td img, .table th img {
+  border-radius: 0;
+}
+
+#signalImage {
+  margin: 0;
+}
+
+#main-title {
+  color: #f9c80f;
+  font-size: 17px;
+  width: 100%;
+  text-align: right;
+  margin: 20px 15px;
+}
+
+.main-logo {
+  height: 150px;
+  padding: 40px 20px;
+
+  img {
+    height: 55px;
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+.card-title {
+  color: #f9c80f !important;
+  font-size: 16px !important;
+}
+
+.create-user-btn {
+  margin-right: 0px !important;
+}
+
+.sidebar[_ngcontent-fof-c2] {
+  min-height: calc(100vh - 150px);
+}
+
+.help-block {
+  color: red;
+  font-size: 10px;
+}
+
+#button-container {
+  display: flex;
+
+  div {
+    margin-left: 5px;
+  }
+}
+
+.imgPlaceholder {
+  margin: 10px;
+  border-radius: 10px;
+  border: 0px;
+}
+
+#clip {
+  font-size: 14px;
+}
+
+.form-group label {
+  color: #ccc;
+}
+
+.card-description {
+  color: #f9c80f !important;
+}

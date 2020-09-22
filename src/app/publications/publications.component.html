@@ -1,0 +1,77 @@
+<div class="row">
+  <label id="main-title">{{pageTitle}}</label>
+</div>
+<div class="row">
+  <div class="col-lg-12 grid-margin">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-sm-flex justify-content-center justify-content-sm-between custom-card-header">
+          <h4 class="card-title">All Documentation</h4>
+          <button type="submit" (click)="viewPublicationDetails(null, 'create')" class="btn btn-success mr-2 create-user-btn">Add New Documentation</button>
+        </div>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>
+                  #
+                </th>
+                <th>
+                  Document
+                </th>
+                <th>
+                  Title
+                </th>
+                <th>
+                  Pages
+                </th>
+                <th>
+                  Date Created
+                </th>
+                <th>
+                  Actions
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let publication of publicationDetails; let i = index">
+                <td>
+                  {{ i + 1 }}
+                </td>
+                <!-- <td>
+                  <div class="video-container">
+                    <video width="160" height="90" controls>
+                      <source [src]="localUrl" id="videoClip" *ngIf="localUrl" class="imgPlaceholder" type="video/mp4">
+                    </video>
+                  </div>
+                </td> -->
+                <td>
+                  <div class="">
+                    <iframe [src]="publication.mediaLink" class="e2e-iframe-trusted-src" id="document" class="imgPlaceholder" width="160px" height="90px"></iframe>
+                  </div>
+                </td>
+                <td> 
+                  {{publication.title}}
+                </td>
+                <td> 
+                  {{publication.pages}}
+                </td>
+                <td> 
+                  {{publication.dateCreated}}
+                </td>
+                <td>
+                  <div class="badge badge-pill badge-primary" placement="bottom" ngbTooltip="View Info"><i class="mdi mdi-magnify"></i></div>&nbsp;
+                  <div class="badge badge-pill badge-info" placement="bottom" ngbTooltip="Edit Info"><i class="mdi mdi-pencil"></i></div>&nbsp;
+                  <div class="badge badge-pill badge-danger" placement="bottom" ngbTooltip="Deactivate User"><i class="mdi mdi-delete"></i></div>
+                </td>
+              </tr>
+              
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

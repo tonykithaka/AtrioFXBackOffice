@@ -1,0 +1,52 @@
+.help-block {
+  color: red;
+  font-size: 12px;
+}
+
+.has-error {
+  .control-label {
+    color: red;
+  }
+  .form-control {
+    border-color: red;
+  }
+}
+
+.has-success {
+  .control-label {
+    color: green;
+  }
+  .form-control {
+    border-color: green;
+  }
+}
+
+#userImage {
+  width: 150px;
+}
+
+.fileButton {
+  height: 150px;
+  display: flex;
+  align-items: center;
+}
+
+#image {
+  font-size: 13px;
+}
+
+.loader {
+  width: calc(100% - 255px);
+  height: calc(100vh - 120px);
+  z-index: 10;
+  margin: -25px -28px;
+  display: flex;
+  position: absolute;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  img {
+      display: block;
+      margin: 0 auto;
+  }
+}

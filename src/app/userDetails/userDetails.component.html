@@ -1,0 +1,203 @@
+<div class="row">
+  <label id="main-title">{{pageTitle}}</label>
+</div>
+<!-- <div *ngIf="loader" class="loader"><img src="../../assets/images/loader.svg" alt="loading"></div> -->
+<div class="col-12 grid-margin">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">{{cardTitle}} User Details</h4>
+      <!-- <form class="form-sample" [formGroup]="userInformationForm" #userDetailsForm="ngForm"> -->
+      <form class="form-sample" #userDetailsForm="ngForm">
+        <p class="card-description">
+          Personal info
+        </p>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group row" [class.has-error]="firstName.invalid && firstName.touched"
+              [class.has-success]="firstName.valid">
+              <label class="col-sm-3 col-form-label control-label" for="firstName">First Name</label>
+              <div class="col-sm-9">
+                <input required pattern="^([a-zA-Z]{3,20})$" type="text" class="form-control" name="firstName"
+                  id="firstName" [(ngModel)]="user.firstName" #firstName="ngModel" />
+                <span class="help-block" *ngIf="firstName.errors?.required && firstName.touched">
+                  First Name is Required.
+                </span>
+                <span class="help-block" *ngIf=" firstName.errors?.pattern && firstName.touched">
+                  First Name is invalid.
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group row" [class.has-error]="lastName.invalid && lastName.touched"
+              [class.has-success]="lastName.valid">
+              <label class="col-sm-3 col-form-label control-label" for="lastName">Last Name</label>
+              <div class="col-sm-9">
+                <input required pattern="^([a-zA-Z]{3,20})$" type="text" class="form-control" name="lastName"
+                  id="lastName" [(ngModel)]="user.lastName" #lastName="ngModel" />
+                <span class="help-block" *ngIf="lastName.errors?.required && lastName.touched">
+                  Last Name is Required.
+                </span>
+                <span class="help-block" *ngIf=" lastName.errors?.pattern && lastName.touched">
+                  Last Name is invalid.
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group row" [class.has-error]="nationalId.invalid && nationalId.touched"
+              [class.has-success]="nationalId.valid">
+              <label class="col-sm-3 col-form-label control-label" for="nationalId">ID Number</label>
+              <div class="col-sm-9">
+                <input required pattern="^([0-9]{7,9})$" type="text" class="form-control" name="nationalId"
+                  id="nationalId" [(ngModel)]="user.nationalId" #nationalId="ngModel" />
+                <span class="help-block" *ngIf="nationalId.errors?.required && nationalId.touched">
+                  ID Number is Required.
+                </span>
+                <span class="help-block" *ngIf=" nationalId.errors?.pattern && nationalId.touched">
+                  ID Number is invalid.
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group row" [class.has-error]="rank.invalid && rank.touched"
+              [class.has-success]="rank.valid">
+              <label class="col-sm-3 col-form-label control-label" for="rank">Rank</label>
+              <div class="col-sm-9">
+                <select required class="form-control" name="rank" [(ngModel)]="user.rank" id="rank" #rank="ngModel">
+                  <option disabled [ngValue]="null">Select Rank</option>
+                  <option *ngFor="let rnk of userCategory" [value]="rnk.categoryValue">
+                    {{rnk.categoryValue}}
+                  </option>
+                </select>
+                <span class="help-block" *ngIf="rank.invalid && rank.touched">
+                  Rank is required.
+                </span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <p class="card-description">
+          Address
+        </p>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group row" [class.has-error]="emailAddress.invalid && emailAddress.touched"
+              [class.has-success]="emailAddress.valid">
+              <label class="col-sm-3 col-form-label control-label" for="emailAddress">Email Address</label>
+              <div class="col-sm-9">
+                <input required pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" type="text"
+                  class="form-control" name="emailAddress" id="emailAddress" [(ngModel)]="user.emailAddress"
+                  #emailAddress="ngModel" />
+                <span class="help-block" *ngIf="emailAddress.errors?.required && emailAddress.touched">
+                  Email Address is Required.
+                </span>
+                <span class="help-block" *ngIf=" emailAddress.errors?.pattern && emailAddress.touched">
+                  Email Address is invalid.
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group row" [class.has-error]="phoneNumber.invalid && phoneNumber.touched"
+              [class.has-success]="phoneNumber.valid">
+              <label class="col-sm-3 col-form-label control-label" for="phoneNumber">Phone Number</label>
+              <div class="col-sm-9">
+                <input required pattern="^([+0-9]{10,13})$" type="text" class="form-control" name="phoneNumber"
+                  id="phoneNumber" [(ngModel)]="user.phoneNumber" #phoneNumber="ngModel" />
+                <span class="help-block" *ngIf="phoneNumber.errors?.required && phoneNumber.touched">
+                  Phone Number is Required.
+                </span>
+                <span class="help-block" *ngIf=" phoneNumber.errors?.pattern && phoneNumber.touched">
+                  Phone Number is invalid.
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6" *ngIf="editButton || createButton">
+            <div class="form-group fileButton">
+              <input type="file" name="image" id="image" [(ngModel)]="user.image" #image="ngModel"
+                (change)="showPreviewImage($event)" />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <img [src]="localUrl" id="userImage" *ngIf="localUrl" class="imgPlaceholder">
+          </div>
+        </div>
+        <div *ngIf="actionButton; then thenBlock"></div>
+        <div>
+          <ng-template #thenBlock>
+            <p class="card-description">
+              Credentials
+            </p>
+            <div ngModelGroup="passwordGroup" appConfirmEqualValidator #passwordGroup="ngModelGroup"
+              [class.has-error]="passwordGroup.errors?.notEqual && !confirmPassword.errors?.required">
+              <div class="row">
+
+                <div class="col-md-6">
+                  <div class="form-group row" [class.has-error]="password.invalid && password.touched">
+                    <label class="col-sm-3 col-form-label control-label" for="password">Password</label>
+                    <div class="col-sm-9">
+                      <input required type="password" class="form-control" name="password" id="password"
+                        [(ngModel)]="user.password" #password="ngModel" />
+                      <span class="help-block" *ngIf="password.invalid && password.errors?.required">
+                        Password is Required.
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group row" [class.has-error]="confirmPassword.invalid && confirmPassword.touched">
+                    <label class="col-sm-3 col-form-label control-label" for="confirmPassword">Confirm
+                      Password</label>
+                    <div class="col-sm-9">
+                      <input required appConfirmEqualValidator="password" type="password" class="form-control"
+                        name="confirmPassword" id="confirmPassword" [(ngModel)]="user.confirmPassword"
+                        #confirmPassword="ngModel" />
+                      <span class="help-block" *ngIf="confirmPassword.errors?.required && confirmPassword.touched">
+                        Confirm Password is Required.
+                      </span>
+                      <span class="help-block"
+                        *ngIf="passwordGroup.errors?.notEqual && confirmPassword.touched && !confirmPassword.errors?.required">
+                        Password and Confirm Password do not Match.
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+        <div class="row">
+          <div class="col-md-6" id="button-container">
+            <div *ngIf="createButton">
+              <button type="submit" class="btn btn-success mr-2 create-user-btn" (click)="saveUserDetails(user); userDetailsForm.reset()" [disabled]="userDetailsForm.invalid">Create
+                User</button>
+            </div>
+            <div *ngIf="editButton">
+              <button type="submit" class="btn btn-success mr-2 create-user-btn" (click)="editUserDetails(user); userDetailsForm.reset()" [disabled]="userDetailsForm.invalid">Save
+                Changes</button>
+            </div>
+            <div *ngIf="deleteButton">
+              <button type="submit" class="btn btn-success mr-2 create-user-btn" [disabled]="userDetailsForm.invalid">Deactivate
+                User</button>
+            </div>
+            <div>
+              <a class="btn btn-light mr-2 create-user-btn" (click)="userDetailsForm.reset()" routerLink="/users">Back to
+                List</a>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

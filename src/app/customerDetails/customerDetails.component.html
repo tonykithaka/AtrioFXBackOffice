@@ -1,0 +1,236 @@
+<div class="row">
+  <label id="main-title">{{pageTitle}}</label>
+</div>
+<div class="col-12 grid-margin">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">{{actionTitle}} Customer Details</h4>
+      <!-- <form class="form-sample" [formGroup]="userInformationForm" #userDetailsForm="ngForm"> -->
+      <form class="form-sample" #customerDetailsForm="ngForm">
+        <p class="card-description">
+          Personal info
+        </p>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group row" [class.has-error]="firstName.invalid && firstName.touched"
+              [class.has-success]="firstName.valid">
+              <label class="col-sm-3 col-form-label control-label" for="firstName">First Name</label>
+              <div class="col-sm-9">
+                <input required pattern="^([a-zA-Z]{3,20})$" type="text" class="form-control" name="firstName"
+                  id="firstName" [(ngModel)]="customer.firstName" #firstName="ngModel" />
+                <span class="help-block" *ngIf="firstName.errors?.required && firstName.touched">
+                  First Name is Required.
+                </span>
+                <span class="help-block" *ngIf=" firstName.errors?.pattern && firstName.touched">
+                  First Name is invalid.
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group row" [class.has-error]="lastName.invalid && lastName.touched"
+              [class.has-success]="lastName.valid">
+              <label class="col-sm-3 col-form-label control-label" for="lastName">Last Name</label>
+              <div class="col-sm-9">
+                <input required pattern="^([a-zA-Z]{3,20})$" type="text" class="form-control" name="lastName"
+                  id="lastName" [(ngModel)]="customer.lastName" #lastName="ngModel" />
+                <span class="help-block" *ngIf="lastName.errors?.required && lastName.touched">
+                  Last Name is Required.
+                </span>
+                <span class="help-block" *ngIf=" lastName.errors?.pattern && lastName.touched">
+                  Last Name is invalid.
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group row" [class.has-error]="nationalId.invalid && nationalId.touched"
+              [class.has-success]="nationalId.valid">
+              <label class="col-sm-3 col-form-label control-label" for="nationalId">ID Number</label>
+              <div class="col-sm-9">
+                <input required pattern="^([0-9]{7,9})$" type="text" class="form-control" name="nationalId"
+                  id="nationalId" [(ngModel)]="customer.nationalId" #nationalId="ngModel" />
+                <span class="help-block" *ngIf="nationalId.errors?.required && nationalId.touched">
+                  ID Number is Required.
+                </span>
+                <span class="help-block" *ngIf=" nationalId.errors?.pattern && nationalId.touched">
+                  ID Number is invalid.
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="card-description">
+          Address
+        </p>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group row" [class.has-error]="emailAddress.invalid && emailAddress.touched"
+              [class.has-success]="emailAddress.valid">
+              <label class="col-sm-3 col-form-label control-label" for="emailAddress">Email Address</label>
+              <div class="col-sm-9">
+                <input required pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" type="text"
+                  class="form-control" name="emailAddress" id="emailAddress" [(ngModel)]="customer.emailAddress"
+                  #emailAddress="ngModel" />
+                <span class="help-block" *ngIf="emailAddress.errors?.required && emailAddress.touched">
+                  Email Address is Required.
+                </span>
+                <span class="help-block" *ngIf=" emailAddress.errors?.pattern && emailAddress.touched">
+                  Email Address is invalid.
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group row" [class.has-error]="phoneNumber.invalid && phoneNumber.touched"
+              [class.has-success]="phoneNumber.valid">
+              <label class="col-sm-3 col-form-label control-label" for="phoneNumber">Phone Number</label>
+              <div class="col-sm-9">
+                <input required pattern="^([+0-9]{10,13})$" type="text" class="form-control" name="phoneNumber"
+                  id="phoneNumber" [(ngModel)]="customer.phoneNumber" #phoneNumber="ngModel" />
+                <span class="help-block" *ngIf="phoneNumber.errors?.required && phoneNumber.touched">
+                  Phone Number is Required.
+                </span>
+                <span class="help-block" *ngIf=" phoneNumber.errors?.pattern && phoneNumber.touched">
+                  Phone Number is invalid.
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group row" [class.has-error]="telegramName.invalid && telegramName.touched"
+              [class.has-success]="telegramName.valid">
+              <label class="col-sm-3 col-form-label control-label" for="telegramName">Telegram Username</label>
+              <div class="col-sm-9">
+                <input required pattern="^([a-zA-Z0-9\_@.]{3,20})$" type="text" class="form-control" name="telegramName"
+                  id="telegramName" [(ngModel)]="customer.telegramName" #telegramName="ngModel" />
+                <span class="help-block" *ngIf="telegramName.errors?.required && telegramName.touched">
+                  Telegram Name is required.
+                </span>
+                <span class="help-block" *ngIf=" telegramName.errors?.pattern && telegramName.touched">
+                  Telegram Name is Invalid
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="card-description">
+          Subscription Details
+        </p>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group row" [class.has-error]="startDate.invalid && startDate.touched"
+              [class.has-success]="startDate.valid">
+              <label class="col-sm-3 col-form-label control-label" for="startDate">Start Date</label>
+              <div class="col-sm-9">
+                <input required pattern="^([a-zA-Z0-9\, ]{4,}(?: [a-zA-Z0-9\:]+){0,2})$" type="text"
+                  class="form-control" name="startDate" id="startDate" [(ngModel)]="customer.startDate"
+                  #startDate="ngModel" />
+                <span class="help-block" *ngIf="startDate.errors?.required && startDate.touched">
+                  Start Date is Required.
+                </span>
+                <span class="help-block" *ngIf=" startDate.errors?.pattern && startDate.touched">
+                  Start Date is invalid.
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group row" [class.has-error]="endDate.invalid && endDate.touched"
+              [class.has-success]="endDate.valid">
+              <label class="col-sm-3 col-form-label control-label" for="endDate">End Date</label>
+              <div class="col-sm-9">
+                <input required pattern="^([a-zA-Z0-9\, ]{4,}(?: [a-zA-Z0-9\:]+){0,2})$" type="text"
+                  class="form-control" name="endDate" id="endDate" [(ngModel)]="customer.endDate" #endDate="ngModel" />
+                <span class="help-block" *ngIf="endDate.errors?.required && endDate.touched">
+                  End Date is Required.
+                </span>
+                <span class="help-block" *ngIf=" endDate.errors?.pattern && endDate.touched">
+                  End Date is invalid.
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group row" [class.has-error]="subscriptionType.invalid && subscriptionType.touched"
+              [class.has-success]="subscriptionType.valid">
+              <label class="col-sm-3 col-form-label control-label" for="subscriptionType">Subscription Type</label>
+              <div class="col-sm-9">
+                <select required class="form-control" name="subscriptionType" [(ngModel)]="customer.subscriptionType"
+                  id="subscriptionType" #subscriptionType="ngModel">
+                  <option disabled [ngValue]="null">Select Subscription</option>
+                  <option *ngFor="let cat of customerCategory" [value]="cat.categoryValue">
+                    {{cat.categoryValue}}
+                  </option>
+                </select>
+                <span class="help-block" *ngIf="subscriptionType.invalid && subscriptionType.touched">
+                  Subscription Type is required.
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group row" [class.has-error]="paymentType.invalid && paymentType.touched"
+              [class.has-success]="paymentType.valid">
+              <label class="col-sm-3 col-form-label control-label" for="paymentType">Payment Type</label>
+              <div class="col-sm-9">
+                <input required pattern="^([a-zA-Z]{3,20})$" type="text" class="form-control" name="paymentType"
+                  id="paymentType" [(ngModel)]="customer.paymentType" #paymentType="ngModel" />
+                <span class="help-block" *ngIf="paymentType.errors?.required && paymentType.touched">
+                  Payment Type is Required.
+                </span>
+                <span class="help-block" *ngIf=" paymentType.errors?.pattern && paymentType.touched">
+                  EPayment Type is invalid.
+                </span>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+
+        <div class="row">
+          <div class="col-md-6" id="button-container">
+            <div *ngIf="editButton">
+              <button type="submit" class="btn btn-success mr-2 create-user-btn" (click)="saveCustomerChanges(customer); customerDetailsForm.reset()" [disabled]="customerDetailsForm.invalid">Save
+                Information Changes</button>
+            </div>
+            <div *ngIf="deleteButton">
+              <button type="submit" class="btn btn-success mr-2 create-user-btn" (click)="deactivateCustomer(customer); customerDetailsForm.reset()" [disabled]="customerDetailsForm.invalid">Deactivate 
+                Customer</button>
+            </div>
+            <div>
+              <a class="btn btn-light mr-2 create-user-btn" (click)="customerDetailsForm.reset()" routerLink="/customers">Back to
+                List</a>
+            </div>
+          </div>
+        </div>
+        <!-- <div>
+          <ng-template #thenBlock>
+            <button type="submit" class="btn btn-success mr-2 create-customer-btn"
+              [disabled]="customerDetailsForm.invalid">Save
+              Customer</button>&nbsp;&nbsp;
+            <a class="btn btn-light mr-2 create-customer-btn" (click)="customerDetailsForm.reset()"
+              routerLink="/users">Back to
+              List</a>
+          </ng-template>
+          <ng-template #elseBlock><button type="submit" class="btn btn-success mr-2 create-customer-btn"
+              [disabled]="customerDetailsForm.invalid" (click)="saveCustomerChanges(customer)">Save
+              Changes</button>&nbsp;&nbsp;
+            <a class="btn btn-light mr-2 create-customer-btn" (click)="customerDetailsForm.reset()" routerLink="/customers">Back
+              to
+              List</a>
+          </ng-template>
+        </div> -->
+      </form>
+    </div>
+  </div>
+</div>

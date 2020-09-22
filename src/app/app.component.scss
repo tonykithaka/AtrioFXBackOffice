@@ -7,3 +7,34 @@
   font-size: 1rem;
   font-family: $type-1;
 }
+
+
+.card-title {
+  color: #308ee0 !important;
+  font-size: 15px !important;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
+.custom-card-header {
+  font-size: 13px;
+  margin: 15px 0;
+}
+
+
+.dataTables_length {
+  font-size: 13px !important;
+}
+
+.dataTables_filter {
+  font-size: 13px !important;
+
+  input {
+    border: 1px solid #999 !important;
+    border-radius: 3px !important;
+  }
+}
+
+.dataTables_info, .dataTables_paginate {
+  font-size: 13px !important;
+}

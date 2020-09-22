@@ -1,0 +1,82 @@
+
+<div class="row">
+  <label id="main-title">{{pageTitle}}</label>
+</div>
+<div class="row">
+  <div class="col-lg-12 grid-margin">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">All Customers</h4>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>
+                  #
+                </th>
+                <th>
+                  Customer ID
+                </th>
+                <th>
+                  Full Name
+                </th>
+                <th>
+                  Telegram
+                </th>
+                <th>
+                  Email Address
+                </th>
+                <th>
+                  Phone Number
+                </th>
+                <th>
+                  Subscription
+                </th>
+                <th>
+                  Actions
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let customer of customerDetails; let i = index">
+                <td class="font-weight-medium">
+                  {{ i + 1 }}
+                </td>
+                <td>
+                  {{customer.nationalId}}
+                </td>
+                <td>
+                  {{customer.firstName}}  {{customer.lastName}}
+                </td>
+                <td> 
+                  {{customer.telegramName}}
+                </td>
+                <td>
+                  {{customer.emailAddress}}
+                </td>
+                <td>
+                  {{customer.phoneNumber}}
+                </td>
+                <td>
+                  {{customer.subscriptionType}}
+                </td>
+                <td>
+                  <div class="badge badge-pill badge-primary" placement="bottom"
+                    (click)="viewCustomerDetails([customer.nationalId], 'view')" ngbTooltip="View Info"><i class="mdi mdi-magnify"></i>
+                  </div>&nbsp;
+                  <div class="badge badge-pill badge-info" placement="bottom"
+                    (click)="viewCustomerDetails([customer.nationalId], 'edit')" ngbTooltip="Edit Info"><i class="mdi mdi-pencil"></i>
+                  </div>&nbsp;
+                  <div class="badge badge-pill badge-danger" placement="bottom"
+                    (click)="viewCustomerDetails([customer.nationalId], 'delete')" ngbTooltip="Deactivate Customer"><i
+                      class="mdi mdi-delete"></i></div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

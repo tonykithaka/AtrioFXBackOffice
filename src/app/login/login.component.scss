@@ -1,0 +1,42 @@
+.login-title {
+    font-size: 30px;
+    font-weight: 900;
+}
+
+.card-bottom {
+    padding-top: 20px;
+}
+
+.login-submit {
+    background-color: #FFC300;
+    border-color: #FFC300;
+    color: #333;
+}
+
+.login-logo img {
+    height: 120px;
+}
+
+.login-content-top {
+    color:  #FFC300;
+    font-size: 22px;
+    font-weight: 400;
+}
+
+.login-content-mid {
+    color:  #FFC300;
+    font-size: 40px;
+    font-weight: 900;
+}
+
+.login-content-bottom {
+    color:  #FFC300;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.login-left {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}

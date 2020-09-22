@@ -1,0 +1,22 @@
+.help-block {
+    color: red;
+    font-size: 12px;
+}
+
+.has-error{
+    .control-label {
+        color: red;
+    }
+    .form-control {
+        border-color: red;
+    }
+}
+
+.has-success {
+    .control-label {
+        color: green;
+    }
+    .form-control {
+        border-color: green;
+    }
+}

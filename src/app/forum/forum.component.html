@@ -1,0 +1,146 @@
+<div class="row">
+  <label id="main-title">{{pageTitle}}</label>
+</div>
+<div class="row">
+  <!-- Tickets show here -->
+  <div class="col-5">
+    <div class="card ticket">
+      <div class="card-header">
+        <label>All tickets</label>
+      </div>
+      <div class="card-body ticket-body">
+        <div class="fluid-container">
+          <div *ngFor="let item of ticketDatum">
+            <div class="row ticket-card mt-3 pb-2 border-bottom pb-3 mb-3" (click)="viewTicketResponses([item])">
+              <div class="col-md-2">
+                <img class="img-sm rounded-circle mb-4 mb-md-0" src="assets/images/faces/face1.jpg" alt="profile image">
+              </div>
+              <div class="ticket-details col-md-10">
+                <div class="d-flex flex-column" style=" margin-bottom: 10px;">
+                  <div class="card-top" style="display: flex; flex-direction: row; justify-content: space-between;">
+                    <p class="card-name font-weight-semibold mr-2 mb-0 no-wrap">{{item.firstName}} {{item.lastName}}</p>
+                    <div class="card-name d-flex">
+                      <small class="mb-0 mr-2 ">Posted on :</small>
+                      <small class="Last-responded mr-2 mb-0 ">{{item.dateCreated}}</small>
+                    </div>
+                  </div>
+                  <p class="mb-0 card-topic ellipsis">{{item.topic}}</p>
+                </div>
+                <p class="text-gray question mb-2">{{item.question}}</p>
+                <div class="text-gray d-flex">
+                  <div class="d-flex">
+                    <small class="mb-0 mr-2">Lastly responded on :</small>
+                    <small class="Last-responded mr-2 mb-">{{item.dateCreated}}</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer ticket-footer pb-0 pt-3">
+        <jw-pagination [items]="ticketDatum" (changePage)="onChangePage($event)"></jw-pagination>
+      </div>
+    </div>
+  </div>
+  <div class="col-7">
+    <!-- Answers show here -->
+    <div class="card ticket">
+      <div *ngIf="checkQuestion" class="chart-header col-12">
+        <div class="fluid-container">
+          <div class="row ticket-card  answer-question border-bottom" (click)="viewTicketResponses([item])">
+            <div class="col-md-2">
+              <img class="img-sm rounded-circle mb-4 mb-md-0" src="assets/images/faces/face1.jpg" alt="profile image">
+            </div>
+            <div class="ticket-details col-md-10">
+              <div class="d-flex flex-column" style=" margin-bottom: 10px;">
+                <div class="card-top" style="display: flex; flex-direction: row; justify-content: space-between;">
+                  <p class="card-name font-weight-semibold mr-2 mb-0 no-wrap">{{questionTicketData.firstName}}
+                    {{questionTicketData.lastName}}</p>
+                  <div class="card-name d-flex">
+                    <small class="mb-0 mr-2 ">Posted on :</small>
+                    <small class="Last-responded mr-2 mb-0 ">{{questionTicketData.dateCreated}}</small>
+                  </div>
+                </div>
+                <p class="mb-0 card-topic ellipsis">{{questionTicketData.topic}}</p>
+              </div>
+              <p class="text-gray question mb-2">{{questionTicketData.question}}</p>
+              <div class="text-gray d-flex">
+                <div class="d-flex">
+                  <small class="mb-0 mr-2">Lastly responded on :</small>
+                  <small class="Last-responded mr-2 mb-">{{questionTicketData.dateCreated}}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body #scrollMe ticket-body2">
+        <div class="fluid-container">
+          <div *ngFor="let response of responseData">
+            <div class="row ticket-card border-bottom answer-tab">
+              <div class="col-md-2">
+                <img class="img-sm rounded-circle mb-4 mb-md-0" src="assets/images/faces/face1.jpg" alt="profile image">
+              </div>
+              <div class="ticket-details col-md-10">
+                <div class="d-flex flex-column" style=" margin-bottom: 10px;">
+                  <div class="card-top" style="display: flex; flex-direction: row; justify-content: space-between;">
+                    <p class="card-name font-weight-semibold mr-2 mb-0 no-wrap">{{response.firstName}}
+                      {{response.lastName}}</p>
+                    <div class="card-name d-flex">
+                      <small class="mb-0 mr-2 ">Posted on :</small>
+                      <small class="Last-responded question mr-2 mb-0 ">{{response.dateCreated}}</small>
+                    </div>
+                  </div>
+                </div>
+                <p class="text-gray question mb-2">{{response.answer}}</p>
+                <div class="text-gray d-flex">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer ticket-footer pb-0 pt-3">
+        <form #ticketAnswerForm="ngForm" (ngSubmit)="saveTicketAnswer(ticketAnswerPayload); ticketAnswerForm.reset()">
+
+          <div class="row">
+            <div class="col-md-10">
+              <div class="form-group row" [class.has-error]="ticketAnswer.invalid && ticketAnswer.touched"
+                [class.has-success]="ticketAnswer.valid">
+                <div class="col-sm-9">
+                  <input required type="text" class="form-control" name="ticketAnswer"
+                    id="ticketAnswer" [(ngModel)]="ticketAnswerPayload.ticketAnswer" #ticketAnswer="ngModel" />
+                  <span class="help-block" *ngIf="ticketAnswer.errors?.required && ticketAnswer.touched">
+                    Ticket Answer Required.
+                  </span>
+                  <span class="help-block" *ngIf=" ticketAnswer.errors?.pattern && ticketAnswer.touched">
+                    Ticket Answer is invalid.
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <input type="text" name="ticketId" #ticketId="ngModel" [(ngModel)]="ticketAnswerPayload.ticketId" style="display: none;" />
+              <input type="submit" value="Post" class="btn btn-success">
+              <!-- <div class="form-group row" [class.has-error]="lastName.invalid && lastName.touched"
+                [class.has-success]="lastName.valid">
+                <label class="col-sm-3 col-form-label control-label" for="lastName">Last Name</label>
+                <div class="col-sm-9">
+                  <input required pattern="^([a-zA-Z]{3,20})$" type="text" class="form-control" name="lastName"
+                    id="lastName" [(ngModel)]="customer.lastName" #lastName="ngModel" />
+                  <span class="help-block" *ngIf="lastName.errors?.required && lastName.touched">
+                    Last Name is Required.
+                  </span>
+                  <span class="help-block" *ngIf=" lastName.errors?.pattern && lastName.touched">
+                    Last Name is invalid.
+                  </span>
+                </div>
+              </div> -->
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>

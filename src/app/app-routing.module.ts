@@ -1,45 +1,61 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
 
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { FormsComponent } from './forms/forms.component';
-import { ButtonsComponent } from './buttons/buttons.component';
-import { TablesComponent } from './tables/tables.component';
-import { IconsComponent } from './icons/icons.component';
-import { TypographyComponent } from './typography/typography.component';
-import { AlertsComponent } from './alerts/alerts.component';
-import { AccordionsComponent } from './accordions/accordions.component';
-import { BadgesComponent } from './badges/badges.component';
-import { ProgressbarComponent } from './progressbar/progressbar.component';
-import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
-import { PaginationComponent } from './pagination/pagination.component';
-import { DropdownComponent } from './dropdown/dropdown.component';
-import { TooltipsComponent } from './tooltips/tooltips.component';
-import { CarouselComponent } from './carousel/carousel.component';
-import { TabsComponent } from './tabs/tabs.component';
+import { DashboardComponent } from "./dashboard/dashboard.component";
+import { CustomerComponent } from "./customers/customer.component";
+import { UsersComponent } from "./users/users.component";
+import { VideosComponent } from "./videos/videos.component";
+import { portalLayoutComponent } from "./layouts/portalLayout/portalLayout.component";
+import { LoginLayoutComponent } from "./layouts/loginLayout/loginLayout.component";
+import { LoginComponent } from "./login/login.component";
+import { UserDetailsComponent } from "./userDetails/userDetails.component";
+import { CustomerDetailsComponent } from "./customerDetails/customerDetails.component";
+import { VideoDetailsComponent } from "./videoDetails/videoDetails.component";
+import { PublicationsComponent } from "./publications/publications.component";
+import { PublicationDetailsComponent } from "./publicationDetails/publicationDetails.component";
+import { ForumComponent } from "./forum/forum.component";
+import { ForumDetailsComponent } from "./forumDetails/forumDetails.component";
+import { CallbackRequestComponent } from "./callbackRequest/callbackRequest.component";
+import { SignalsComponent } from "./signals/signals.component";
+import { SignalDetailsComponent } from "./signalDetails/signalDetails.component";
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'forms', component: FormsComponent },
-  { path: 'buttons', component: ButtonsComponent },
-  { path: 'tables', component: TablesComponent },
-  { path: 'icons', component: IconsComponent },
-  { path: 'typography', component: TypographyComponent },
-  { path: 'alerts', component: AlertsComponent },
-  { path: 'accordions', component: AccordionsComponent },
-  { path: 'badges', component: BadgesComponent },
-  { path: 'progressbar', component: ProgressbarComponent },
-  { path: 'breadcrumbs', component: BreadcrumbsComponent },
-  { path: 'pagination', component: PaginationComponent },
-  { path: 'dropdowns', component: DropdownComponent },
-  { path: 'tooltips', component: TooltipsComponent },
-  { path: 'carousel', component: CarouselComponent },
-  { path: 'tabs', component: TabsComponent }
+  { path: "", redirectTo: "/login", pathMatch: "full" },
+  { path: "login", redirectTo: "/login", pathMatch: "full" },
+  {
+    path: "",
+    component: LoginLayoutComponent,
+    children: [{ path: "login", component: LoginComponent }],
+  },
+  {
+    path: "logout",
+    component: LoginLayoutComponent,
+    children: [{ path: "", component: LoginComponent }],
+  },
+  {
+    path: "",
+    component: portalLayoutComponent,
+    children: [
+      { path: "dashboard", component: DashboardComponent },
+      { path: "users", component: UsersComponent },
+      { path: "customers", component: CustomerComponent },
+      { path: "videos", component: VideosComponent },
+      { path: "publications", component: PublicationsComponent },
+      { path: "publicationDetails", component: PublicationDetailsComponent },
+      { path: "userDetails", component: UserDetailsComponent },
+      { path: "customerDetails", component: CustomerDetailsComponent },
+      { path: "videoDetails", component: VideoDetailsComponent },
+      { path: "forum", component: ForumComponent },
+      { path: "forumDetails", component: ForumDetailsComponent },
+      { path: "callbackRequests", component: CallbackRequestComponent },
+      { path: "signals", component: SignalsComponent },
+      { path: "signalDetails", component: SignalDetailsComponent },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

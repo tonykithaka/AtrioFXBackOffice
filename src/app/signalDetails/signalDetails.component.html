@@ -1,0 +1,68 @@
+<div class="row">
+  <label id="main-title">{{pageTitle}}</label>
+</div>
+<!-- <div *ngIf="loader" class="loader"><img src="../../assets/images/loader.svg" alt="loading"></div> -->
+<div class="col-12 grid-margin">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">{{actionButton}} Signal Details</h4>
+      <!-- <form class="form-sample" [formGroup]="userInformationForm" #userDetailsForm="ngForm"> -->
+      <form class="form-sample" #signalDetailsForm="ngForm"
+        (ngSubmit)="saveSignalDetails(signal); signalDetailsForm.reset()">
+        <p class="card-description">
+          Signal Information
+        </p>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group row" [class.has-error]="title.invalid && title.touched"
+              [class.has-success]="title.valid">
+              <label class="col-sm-3 col-form-label control-label" for="title">Title</label>
+              <div class="col-sm-9">
+                <input required
+                  pattern="^([A-Za-z]{3,16})([ ]{0,1})([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})$"
+                  type="text" class="form-control" name="title" id="title" [(ngModel)]="signal.title" #title="ngModel" />
+                <span class="help-block" *ngIf="title.errors?.required && title.touched">
+                  Signal Title is Required.
+                </span>
+                <span class="help-block" *ngIf=" title.errors?.pattern && title.touched">
+                  Signal Title is invalid.
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group fileButton">
+              <input type="file" name="image" id="image" [(ngModel)]="signal.image" #clip="ngModel"
+                (change)="showPreviewSignal($event)" />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <img [src]="localUrl" id="signalImage" *ngIf="localUrl" class="imgPlaceholder">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6" id="button-container">
+            <div *ngIf="createButton">
+              <button type="submit" class="btn btn-success mr-2 create-user-btn" (click)="saveSignalDetails(signal); signalDetailsForm.reset()" [disabled]="signalDetailsForm.invalid">Create
+                New Signal</button>
+            </div>
+            <div *ngIf="editButton">
+              <button type="submit" class="btn btn-success mr-2 create-user-btn" (click)="editSignalDetails(signal); signalDetailsForm.reset()" [disabled]="signalDetailsForm.invalid">Save
+                Changes</button>
+            </div>
+            <div *ngIf="deleteButton">
+              <button type="submit" class="btn btn-success mr-2 create-user-btn" [disabled]="signalDetailsForm.invalid">Delete Signal</button>
+            </div>
+            <div>
+              <a class="btn btn-light mr-2 create-user-btn" (click)="signalDetailsForm.reset()" routerLink="/signals">Back to
+                List</a>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

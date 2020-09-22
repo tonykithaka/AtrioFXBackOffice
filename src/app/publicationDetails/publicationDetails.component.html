@@ -1,0 +1,88 @@
+<div class="row">
+  <label id="main-title">{{pageTitle}}</label>
+</div>
+<div *ngIf="loader" class="loader"><img src="../../assets/images/loader.svg" alt="loading"></div>
+<div class="col-12 grid-margin">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">{{actionButton}} Publication</h4>
+      <!-- <form class="form-sample" [formGroup]="userInformationForm" #userDetailsForm="ngForm"> -->
+      <form class="form-sample" #publicationDetailsForm="ngForm"å
+        (ngSubmit)="savePublicationDetails(publication); publicationDetailsForm.reset()">
+        <p class="card-description">
+          Publication Information
+        </p>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group row" [class.has-error]="title.invalid && title.touched"
+              [class.has-success]="title.valid">
+              <label class="col-sm-3 col-form-label control-label" for="title">Title</label>
+              <div class="col-sm-9">
+                <input required
+                  pattern="^([A-Za-z]{3,16})([ ]{0,1})([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})$"
+                  type="text" class="form-control" name="title" id="title" [(ngModel)]="publication.title" #title="ngModel" />
+                <span class="help-block" *ngIf="title.errors?.required && title.touched">
+                  Publication Title is Required.
+                </span>
+                <span class="help-block" *ngIf=" title.errors?.pattern && title.touched">
+                  Publication Title is invalid.
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group row" [class.has-error]="pages.invalid && pages.touched"
+              [class.has-success]="pages.valid">
+              <label class="col-sm-3 col-form-label control-label" for="pages">Pages</label>
+              <div class="col-sm-9">
+                <input required pattern="^([0-9]{1,20})$" type="text" class="form-control" name="pages" id="pages"
+                  [(ngModel)]="publication.pages" #pages="ngModel" />
+                <span class="help-block" *ngIf="pages.errors?.required && pages.touched">
+                  Page Amount is Required.
+                </span>
+                <span class="help-block" *ngIf=" pages.errors?.pattern && pages.touched">
+                  Page Amount  is invalid.
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group fileButton">
+              <input type="file" name="clip" id="clip"
+                (change)="showPreviewPublication($event)" />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <!-- <video width="320" height="240" controls>
+              <source [src]="localUrl" id="document" *ngIf="localUrl" class="imgPlaceholder">
+            </video> -->
+            <iframe [src]="localUrl" class="e2e-iframe-trusted-src" id="document" *ngIf="localUrl" class="imgPlaceholder" width="100%" height="500px">
+
+            </iframe>
+          </div>
+        </div>
+
+        <div *ngIf="actionButton; then thenBlock else elseBlock"></div>
+        <div>
+          <ng-template #thenBlock>
+            <button type="submit" class="btn btn-success mr-2 create-user-btn"
+              [disabled]="publicationDetailsForm.invalid">Save
+              Details</button>&nbsp;&nbsp;
+            <a class="btn btn-light mr-2 create-user-btn" (click)="publicationDetailsForm.reset()" routerLink="/publications">Back
+              to
+              List</a>
+          </ng-template>
+          <ng-template #elseBlock><button type="submit" class="btn btn-success mr-2 create-user-btn"
+              [disabled]="publicationDetailsForm.invalid">Save
+              Changes</button>&nbsp;&nbsp;
+            <a class="btn btn-light mr-2 create-user-btn" (click)="publicationDetailsForm.reset()" routerLink="/publications">Back
+              to
+              List</a>
+          </ng-template>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

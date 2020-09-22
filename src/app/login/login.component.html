@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-md-12 d-flex align-items-stretch grid-margin">
+    <div class="row flex-grow">
+      <div class="col-1"></div>
+      <div class="col-6 login-left">
+        <div class="login-logo">
+          <img src="../../assets/images/logo.svg">
+        </div>
+        <div class="login-content-top">
+          Welcome to
+        </div>
+        <div class="login-content-mid">
+          Atrio FX Administration Portal
+        </div>
+        <div class="login-content-bottom">
+          Login to access your profile
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title login-title">Hello! Welcome</h4>
+            <p class="card-description">
+              Please fill in the details to login
+            </p>
+            <form class="forms-sample" [formGroup]="loginForm" (ngSubmit)="loginUser(loginForm.value)">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email"  formControlName="emailAddress" class="form-control" id="exampleInputEmail1"  placeholder="Enter email">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password"  formControlName="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+              </div>
+              <button type="submit" class="btn btn-success mr-2 login-submit">Submit</button>
+              <p class="card-description card-bottom">
+                Forgot password? <a href="/forgotPassword">Click here.</a>
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-1"></div>
+    </div>
+  </div>
+
+</div>
